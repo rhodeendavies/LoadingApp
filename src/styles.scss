@@ -1,3 +1,21 @@
 html, body {
 	background-color: #353535;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-progress-spinner circle, .mat-spinner circle {
+	stroke: #4f8894 !important;
+}
+
+.mat-progress-bar-fill::after {
+	background-color: #4f8894 !important;
+}
+
+.mat-progress-bar-buffer {
+	background-color: #bedde4 !important;
+}
+
+.mat-progress-bar-background {
+	display: none;
+}

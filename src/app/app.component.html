@@ -1,35 +1,108 @@
 <div class="game-container">
-	<div class="game-title">Memory Game</div>
-
-	<div *ngIf="busy" class="loading">
-		LOADING
+	<div class="game-title">
+		Memory Game 
+		<span *ngIf="!showPickLoader">{{ loader }}</span>
 	</div>
 
-	<div *ngIf="!busy" class="game-body">
-		<div class="buttons">
-			<button (click)="startGame()" class="btn btn-light mx-auto" *ngIf="!gameStart">
-				Start Game
-				<i class="fas fa-brain ms-1"></i>
-			</button>
-			<button (click)="endGame()" class="btn btn-light me-auto" *ngIf="gameStart">
-				Exit
-				<i class="fas fa-times ms-1"></i>
-			</button>
-			<button (click)="nextLevel()" class="btn btn-light" *ngIf="showNextLevel">
-				Next Level
-				<i class="fas fa-rocket ms-1"></i>
-			</button>
+	<div *ngIf="busy" class="loading">
+		<div class="spinner" *ngIf="loader == 1">
+			<mat-spinner></mat-spinner>
 		</div>
-
-		<div *ngIf="gameStart" class="card-container" [class.inactive]="flippingCards">
-			<div *ngFor="let card of cards" (click)="selectCard(card)" class="memory-card"
-				[class.selected]="card.selected" [class.complete]="card.complete">
+		<div class="bar" *ngIf="loader == 2">
+			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+		</div>
+		<div class="card-loader" *ngIf="loader == 3">
+			<div class="memory-card-loader">
 				<div class="memory-card-inner">
 					<div class="card memory-card-front">
 						<i class="fas fa-eye"></i>
 					</div>
 					<div class="card memory-card-back">
-						<i [class]="card.imageIndex"></i>
+						<i [class]="loaderIcon"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="interactive-loader" *ngIf="loader == 4">
+			<div class="mosaic-card-container">
+				<div class="mosaic-card-loader" [class.hovered]="card.selected" *ngFor="let card of loaderCards" (mouseover)="flipLoaderCard(card)">
+					<div class="memory-card-inner">
+						<div class="card memory-card-front">
+							<i class="fas fa-eye"></i>
+						</div>
+						<div class="card memory-card-back">
+							<i [class]="loaderIcon"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				LOADING . . . 
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="!busy" class="game-body">
+		<div class="buttons">
+			<div class="loading-options" *ngIf="showPickLoader">
+				<button (click)="pickLoader(1)" class="btn btn-light mx-1">
+					Option 1
+				</button>
+				<button (click)="pickLoader(2)" class="btn btn-light mx-1">
+					Option 2
+				</button>
+				<button (click)="pickLoader(3)" class="btn btn-light mx-1">
+					Option 3
+				</button>
+				<button (click)="pickLoader(4)" class="btn btn-light mx-1">
+					Option 4
+				</button>
+			</div>
+
+			<div class="mx-auto" *ngIf="!showPickLoader && !gameStart">
+				<button (click)="startGame()" class="btn btn-light mx-1">
+					Start Game
+					<i class="fas fa-brain ms-1"></i>
+				</button>
+				<button (click)="showPickLoader = true" class="btn btn-light mx-1">
+					Options
+					<i class="fas fa-cog ms-1"></i>
+				</button>
+			</div>
+
+			<button (click)="endGame()" class="btn btn-light me-auto" *ngIf="gameStart">
+				Quit
+				<i class="fas fa-times ms-1"></i>
+			</button>
+			<div class="level" *ngIf="gameStart">
+				Level {{ level }}
+			</div>
+		</div>
+
+		<div class="game-wrapper" *ngIf="gameStart">
+			<div class="score-card" [class.show]="showNextLevel">
+				<div class="score-image">
+	
+				</div>
+				<div class="score-text">
+					Score
+					<div class="score-main">{{ score }}</div>
+				</div>
+				<button (click)="nextLevel()" class="btn btn-light mx-auto">
+					Next Level
+					<i class="fas fa-rocket ms-1"></i>
+				</button>
+			</div>
+			<div class="card-container" [class.inactive]="flippingCards">
+				<div *ngFor="let card of cards" (click)="selectCard(card)" class="memory-card"
+					[class.selected]="card.selected" [class.complete]="card.complete">
+					<div class="memory-card-inner">
+						<div class="card memory-card-front">
+							<i class="fas fa-eye"></i>
+						</div>
+						<div class="card memory-card-back">
+							<i [class]="card.imageIndex"></i>
+						</div>
 					</div>
 				</div>
 			</div>
