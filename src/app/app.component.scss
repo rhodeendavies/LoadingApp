@@ -69,6 +69,7 @@ $box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 		width: 100%;
 		padding: 20px;
 		background-color: #bedde4;
+		position: relative;
 	}
 }
 
@@ -243,11 +244,16 @@ $box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 	grid-template: repeat(10, 1fr) / repeat(10, 1fr);
 }
 
+.mosaic-text {
+	position: absolute;
+	font-size: 20px;
+	font-weight: bold;
+}
+
 .mosaic-card-loader {
 	height: 50px;
 	perspective: 500px;
 	background-color: transparent;
-	margin: 1px;
 	width: 50px;
 	
 	.memory-card-inner {
@@ -264,6 +270,11 @@ $box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 			transition: transform 0.3s ease-in-out 0s;
 			transform: rotateY(180deg);
 		}
+
+		.memory-card-front {
+			color: transparent;
+			transition-delay: 0s;
+		}
 	}
 
 	.memory-card-front,
@@ -276,14 +287,18 @@ $box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 		align-items: center;
 		justify-content: center;
 		font-size: 15px;
+		border-radius: 0;
 	}
 
 	.memory-card-front {
 		background-color: #4f8894;
 		color: white;
+		transition: color 0.3s;
+		transition-delay: 0.4s;
 	}
 	
 	.memory-card-back {
+		display: none;
 		background-color: rgb(255, 255, 255);
 		transform: rotateY(180deg);
 		color: #4f8894;

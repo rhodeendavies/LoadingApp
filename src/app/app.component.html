@@ -4,7 +4,7 @@
 		<span *ngIf="!showPickLoader">{{ loader }}</span>
 	</div>
 
-	<div *ngIf="busy" class="loading">
+	<div *ngIf="true || busy" class="loading">
 		<div class="spinner" *ngIf="loader == 1">
 			<mat-spinner></mat-spinner>
 		</div>
@@ -23,20 +23,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="interactive-loader" *ngIf="loader == 4">
+		<div class="interactive-loader" *ngIf="true || loader == 4">
 			<div class="mosaic-card-container">
 				<div class="mosaic-card-loader" [class.hovered]="card.selected" *ngFor="let card of loaderCards" (mouseover)="flipLoaderCard(card)">
 					<div class="memory-card-inner">
 						<div class="card memory-card-front">
-							<i class="fas fa-eye"></i>
+							<!-- <i class="fas fa-eye"></i> -->
+							<fa-icon [icon]="faEye"></fa-icon>
 						</div>
 						<div class="card memory-card-back">
-							<i [class]="loaderIcon"></i>
+							<fa-icon [icon]="card.imageIndex"></fa-icon>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div>
+			<div class="mosaic-text">
 				LOADING . . . 
 			</div>
 		</div>
@@ -98,10 +99,10 @@
 					[class.selected]="card.selected" [class.complete]="card.complete">
 					<div class="memory-card-inner">
 						<div class="card memory-card-front">
-							<i class="fas fa-eye"></i>
+							<fa-icon [icon]="faEye"></fa-icon>
 						</div>
 						<div class="card memory-card-back">
-							<i [class]="card.imageIndex"></i>
+							<fa-icon [icon]="card.imageIndex"></fa-icon>
 						</div>
 					</div>
 				</div>

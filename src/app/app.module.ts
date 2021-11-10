@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
 	declarations: [
@@ -16,7 +17,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		MatProgressSpinnerModule,
-		MatProgressBarModule
+		MatProgressBarModule,
+		FontAwesomeModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
