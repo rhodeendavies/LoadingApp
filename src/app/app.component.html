@@ -4,7 +4,7 @@
 		<span *ngIf="!showPickLoader">{{ loader }}</span>
 	</div>
 
-	<div *ngIf="true || busy" class="loading">
+	<div *ngIf="busy" class="loading">
 		<div class="spinner" *ngIf="loader == 1">
 			<mat-spinner></mat-spinner>
 		</div>
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="interactive-loader" *ngIf="true || loader == 4">
+		<div class="interactive-loader" *ngIf="loader == 4">
 			<div class="mosaic-card-container">
 				<div class="mosaic-card-loader" [class.hovered]="card.selected" *ngFor="let card of loaderCards" (mouseover)="flipLoaderCard(card)">
 					<div class="memory-card-inner">
