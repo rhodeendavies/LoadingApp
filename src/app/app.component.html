@@ -24,21 +24,31 @@
 			</div>
 		</div>
 		<div class="interactive-loader" *ngIf="loader == 4">
-			<div class="mosaic-card-container">
-				<div class="mosaic-card-loader" [class.hovered]="card.selected" *ngFor="let card of loaderCards" (mouseover)="flipLoaderCard(card)">
-					<div class="memory-card-inner">
-						<div class="card memory-card-front">
-							<!-- <i class="fas fa-eye"></i> -->
-							<fa-icon [icon]="faEye"></fa-icon>
-						</div>
-						<div class="card memory-card-back">
-							<fa-icon [icon]="card.imageIndex"></fa-icon>
+			<div class="mosaic-text">
+				LOADING {{ dots }}
+			</div>
+			<div class="mosaic-sub-text">
+				hover over the block to reveal an image!
+				<div>
+					<fa-icon [icon]="faCursor"></fa-icon>
+				</div>
+			</div>
+			<div class="container-container">
+				<div class="mosaic-card-container">
+					<div class="mosaic-card-loader" [class.hovered]="card.selected" *ngFor="let card of loaderCards" (mouseover)="flipLoaderCard(card)">
+						<div class="memory-card-inner">
+							<div class="card memory-card-front">
+								<!-- <fa-icon [icon]="faEye"></fa-icon> -->
+							</div>
+							<div class="card memory-card-back">
+								<fa-icon [icon]="card.imageIndex"></fa-icon>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="mosaic-text">
-				LOADING . . . 
+				<div class="mosaic-card-hover">
+					<fa-icon [icon]="loaderIcon"></fa-icon>
+				</div>
 			</div>
 		</div>
 	</div>

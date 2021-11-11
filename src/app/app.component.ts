@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faAngry, faAppleAlt, faAtom, faAward, faBaby, faBaseballBall, faBed, faBell, faBirthdayCake, faBolt, faBomb, faBone, faBroom, faBug, faBullhorn, faBusAlt, faCameraRetro, faCampground, faCandyCane, faCar, faCarrot, faCat, faChess, faChessKnight, faCloudMeatball, faCloudMoon, faCloudMoonRain, faCloudRain, faCloudSunRain, faCocktail, faCoffee, faCookieBite, faCrow, faCut, faDiceD20, faDizzy, faDog, faDove, faDrum, faDrumstickBite, faEye, faFan, faFeatherAlt, faFighterJet, faFireExtinguisher, faFish, faFlag, faFootballBall, faFrog, faFutbol, faGamepad, faGem, faGhost, faGifts, faGlobeAfrica, faGraduationCap, faGrinBeamSweat, faGrinHearts, faGuitar, faHamburger, faHammer, faHamsa, faHatCowboy, faHatWizard, faHeading, faHeart, faHeartBroken, faHelicopter, faHorse, faHotdog, faIceCream, faJedi, faKey, faKiwiBird, faLemon, faLightbulb, faMagic, faMeteor, faMoon, faMosque, faPaintBrush, faPalette, faPaperPlane, faPastafarianism, faPaw, faPepperHot, faPiggyBank, faPizzaSlice, faQuidditch, faRobot, faRocket, faSadCry, faSkull, faSleigh, faSnowflake, faSnowman, faSpider, faSun, faTheaterMasks, faThermometer, faToiletPaper, faTooth, faUmbrella, faUserAstronaut, faUserNinja, faUserSecret, faWineGlassAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faAngry, faAppleAlt, faAtom, faAward, faBaby, faBaseballBall, faBed, faBell, faBirthdayCake, faBolt, faBomb, faBone, faBroom, faBug, faBullhorn, faBusAlt, faCameraRetro, faCampground, faCandyCane, faCar, faCarrot, faCat, faChess, faChessKnight, faCloudMeatball, faCloudMoon, faCloudMoonRain, faCloudRain, faCloudSunRain, faCocktail, faCoffee, faCookieBite, faCrow, faCut, faDiceD20, faDizzy, faDog, faDove, faDrum, faDrumstickBite, faEye, faFan, faFeatherAlt, faFighterJet, faFireExtinguisher, faFish, faFlag, faFootballBall, faFrog, faFutbol, faGamepad, faGem, faGhost, faGifts, faGlobeAfrica, faGraduationCap, faGrinBeamSweat, faGrinHearts, faGuitar, faHamburger, faHammer, faHamsa, faHatCowboy, faHatWizard, faHeading, faHeart, faHeartBroken, faHelicopter, faHorse, faHotdog, faIceCream, faJedi, faKey, faKiwiBird, faLemon, faLightbulb, faMagic, faMeteor, faMoon, faMosque, faMousePointer, faPaintBrush, faPalette, faPaperPlane, faPastafarianism, faPaw, faPepperHot, faPiggyBank, faPizzaSlice, faQuidditch, faRobot, faRocket, faSadCry, faSkull, faSleigh, faSnowflake, faSnowman, faSpider, faSun, faTheaterMasks, faThermometer, faToiletPaper, faTooth, faUmbrella, faUserAstronaut, faUserNinja, faUserSecret, faWineGlassAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-root',
@@ -132,6 +132,9 @@ export class AppComponent {
 	loaderInterval = setInterval(() => {}, 0);
 	loaderCards: Card[] = [];
 	faEye = faEye;
+	faCursor = faMousePointer;
+	dots: string = "";
+	dotsCount: number = 0;
 
 	pickLoader(option: number) {
 		this.loader = option;
@@ -146,13 +149,26 @@ export class AppComponent {
 				});
 			}
 		}
+
+		this.dotsCount = 0;
+		this.icon = 1;
+		this.loaderIcon = this.icons[this.icon];
+
+		setInterval(() => {
+			this.dots = "";
+			for (let i = 0; i < this.dotsCount; i++) {
+				this.dots += " . ";
+			}
+			++this.dotsCount;
+			if (this.dotsCount > 3) this.dotsCount = 0;
+		}, 500);
 	}
 
 	flipLoaderCard(card: Card) {
 		card.selected = true;
 		setTimeout(() => {
 			card.selected = false;
-		}, 300);
+		}, 1000);
 	}
 
 	setCardLoaderInterval() {
@@ -190,6 +206,9 @@ export class AppComponent {
 		this.busy = true;
 		if (this.loader == 3) {
 			this.setCardLoaderInterval();
+		}
+		if (this.loader == 4) {
+			this.loaderIcon = this.icons[++this.icon];
 		}
 		++this.level;
 		await this.initLevel();
