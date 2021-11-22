@@ -120,7 +120,7 @@ export class AppComponent {
 	showNextLevel: boolean = false;
 	timeToSeeCards: number = 1000;
 	flippingTime: number = 500;
-	loadingTime: number = 5000;
+	loadingTime: number = 7000;
 	flippingCards: boolean = false;
 	selectingCards: boolean = false;
 	score = 0;
