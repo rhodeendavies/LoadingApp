@@ -135,6 +135,7 @@ export class AppComponent {
 	faCursor = faMousePointer;
 	dots: string = "";
 	dotsCount: number = 0;
+	showEndGame: boolean = false;
 
 	pickLoader(option: number) {
 		this.loader = option;
@@ -243,18 +244,23 @@ export class AppComponent {
 		this.moreCardsSelectable = true;
 
 		this.numberOfCards = 0;
+		this.maxSelectedCards = 2;
 		if (this.level <= 1) {
 			this.numberOfCards = 4;
-			this.maxSelectedCards = 2;
 			this.timeToSeeCards = 2000;
 		} else if (this.level >= 2 && this.level <= 4) {
 			this.numberOfCards = 8;
-			this.maxSelectedCards = 2;
 			this.timeToSeeCards = 1500;
-		} else {
+		} else if (this.level == 5 || this.level == 6) {
 			this.numberOfCards = 12;
-			this.maxSelectedCards = 2;
 			this.timeToSeeCards = 1000;
+		} else if (this.level == 7 || this.level == 8) {
+			this.numberOfCards = 12;
+			this.timeToSeeCards = 1000;
+		} else if (this.level == 9) {
+
+		} else if (this.level == 10) {
+
 		}
 
 		let numberOfIcons = this.icons.length;

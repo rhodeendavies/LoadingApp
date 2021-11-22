@@ -100,8 +100,12 @@
 					Score
 					<div class="score-main">{{ score }}</div>
 				</div>
-				<button (click)="nextLevel()" class="btn btn-light mx-auto">
+				<button (click)="nextLevel()" class="btn btn-light mx-auto" *ngIf="!showEndGame">
 					Next Level
+					<i class="fas fa-rocket ms-1"></i>
+				</button>
+				<button (click)="endGame()" class="btn btn-light mx-auto" *ngIf="showEndGame">
+					End Game
 					<i class="fas fa-rocket ms-1"></i>
 				</button>
 			</div>
